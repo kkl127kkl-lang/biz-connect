@@ -227,24 +227,19 @@ return(
 
 {/* Demo Card */}
 <div className="au" style={{animationDelay:'.6s',maxWidth:440,margin:'40px auto 0'}}>
-<div className="card" style={{padding:0,border:'1px solid var(--bg3)'}}>
-<div style={{background:'var(--navy)',padding:'10px 16px',display:'flex',alignItems:'center',gap:6}}>
-<div style={{width:8,height:8,borderRadius:4,background:'#FF5F57'}}/><div style={{width:8,height:8,borderRadius:4,background:'#FEBC2E'}}/><div style={{width:8,height:8,borderRadius:4,background:'#28C840'}}/>
-<span style={{marginLeft:8,fontSize:12,color:'rgba(255,255,255,.5)'}}>BizConnect</span>
-</div>
-<div style={{padding:16}}>
-<div style={{background:'var(--bg2)',borderRadius:'var(--rs)',padding:'11px 14px',display:'flex',alignItems:'center',gap:8,marginBottom:14}}>
+<div className="card" style={{padding:16,border:'1px solid var(--bg3)'}}>
+<div style={{background:'var(--bg2)',borderRadius:'var(--rs)',padding:'11px 14px',display:'flex',alignItems:'center',gap:8,marginBottom:12}}>
 <span style={{fontSize:16}}>🔍</span><span style={{fontWeight:600,fontSize:14}}>삼성전자 구매팀</span>
 <span style={{marginLeft:'auto',background:'var(--em)',color:'#fff',padding:'3px 10px',borderRadius:6,fontSize:11,fontWeight:700}}>검색</span>
 </div>
-{[{n:'김영호',p:'과장',r:78},{n:'이수빈',p:'대리',r:65}].map((u,i)=>(
-<div key={i} style={{display:'flex',alignItems:'center',gap:10,padding:'11px 0',borderTop:i?'1px solid var(--bg2)':'none'}}>
-<div style={{width:40,height:40,borderRadius:20,background:i?'var(--blue-l)':'var(--em-l)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:18}}>{i?'👩‍💼':'👨‍💼'}</div>
-<div style={{flex:1}}><div style={{fontWeight:700,fontSize:14}}>{u.n} <span style={{fontSize:11,color:'var(--text3)',fontWeight:400}}>{u.p}</span></div><div style={{fontSize:12,color:'var(--text2)'}}>삼성전자 · 구매팀</div></div>
-<div style={{textAlign:'right'}}><div style={{fontSize:10,color:'var(--text3)'}}>📞 ***-****-****</div><div style={{fontSize:10,color:'var(--em)',fontWeight:700}}>수락률 {u.r}%</div></div>
+<div style={{fontSize:11,color:'var(--text3)',marginBottom:6}}>검색 결과 5명</div>
+{[{n:'김영호',p:'과장',r:78,a:'👨‍💼',bg:'var(--em-l)'},{n:'이수빈',p:'대리',r:65,a:'👩‍💼',bg:'var(--blue-l)'},{n:'정태윤',p:'팀장',r:82,a:'👨‍💼',bg:'var(--purple-l)'},{n:'한소희',p:'차장',r:71,a:'👩‍💼',bg:'var(--orange-l)'},{n:'박준서',p:'사원',r:58,a:'👨‍💻',bg:'var(--pink-l)'}].map((u,i)=>(
+<div key={i} style={{display:'flex',alignItems:'center',gap:10,padding:'10px 0',borderTop:i?'1px solid var(--bg2)':'none'}}>
+<div style={{width:38,height:38,borderRadius:19,background:u.bg,display:'flex',alignItems:'center',justifyContent:'center',fontSize:17}}>{u.a}</div>
+<div style={{flex:1}}><div style={{fontWeight:700,fontSize:13}}>{u.n} <span style={{fontSize:10,color:'var(--text3)',fontWeight:400}}>{u.p}</span></div><div style={{fontSize:11,color:'var(--text2)'}}>삼성전자 · 구매팀</div></div>
+<div style={{textAlign:'right'}}><div style={{fontSize:9,color:'var(--text3)'}}>📞 ***-****-****</div><div style={{fontSize:9,color:'var(--em)',fontWeight:700}}>수락률 {u.r}%</div></div>
 </div>))}
 <button className="btn btn-p btn-sm btn-w" style={{marginTop:10}} onClick={()=>setPg('signup')}>🤝 연락처 요청하기</button>
-</div>
 </div>
 </div>
 </div>
@@ -293,14 +288,14 @@ return(
 {/* Competitor Comparison */}
 <section style={{padding:'72px 0'}}>
 <div className="ctn">
-<div style={{textAlign:'center',marginBottom:40}}><span className="badge b-bl" style={{marginBottom:10}}>VS COMPETITORS</span><h2 style={{fontSize:'clamp(22px,4vw,34px)',fontWeight:800}}>LinkedIn과 근본적으로 다릅니다</h2></div>
+<div style={{textAlign:'center',marginBottom:40}}><span className="badge b-bl" style={{marginBottom:10}}>VS COMPETITORS</span><h2 style={{fontSize:'clamp(22px,4vw,34px)',fontWeight:800}}>기존 서비스와 근본적으로 다릅니다</h2></div>
 <div style={{overflowX:'auto'}}>
 <table style={{width:'100%',minWidth:600,borderCollapse:'separate',borderSpacing:0,background:'var(--card)',borderRadius:'var(--r)',boxShadow:'var(--sh)',overflow:'hidden'}}>
 <thead><tr style={{background:'var(--navy)',color:'#fff'}}>
-{['비교 항목','LinkedIn','ZoomInfo','BizConnect'].map((h,i)=><th key={i} style={{padding:'14px 16px',textAlign:'left',fontSize:13,fontWeight:700}}>{i===3?<span style={{color:'var(--em)'}}>✨ {h}</span>:h}</th>)}
+{['비교 항목','기존 SNS 플랫폼','기존 연락처 DB','BizConnect'].map((h,i)=><th key={i} style={{padding:'14px 16px',textAlign:'left',fontSize:13,fontWeight:700}}>{i===3?<span style={{color:'var(--em)'}}>✨ {h}</span>:h}</th>)}
 </tr></thead>
 <tbody>
-{[['본질','SNS (자기 PR)','데이터 크롤링 DB','동의 기반 디렉토리 ✅'],['전화번호','비공개','동의없이 열람','동의 시에만 상호 공개 ✅'],['스팸 차단','InMail 범람','차단 불가','구조적 차단 ✅'],['한국 정확도','42%','40%','99%+ (본인 등록) ✅'],['규제 리스크','소송 중','GDPR 벌금','완전 준수 ✅'],['가격','$60+/월','$200+/월','무료~29,000원 ✅']].map((r,i)=>(
+{[['본질','SNS (자기 PR 중심)','동의 없이 데이터 크롤링','동의 기반 디렉토리 ✅'],['전화번호','대부분 비공개','일방적 열람 (동의 없음)','동의 시에만 상호 공개 ✅'],['스팸 차단','메시지 스팸 범람','구조적 차단 불가','구조적 차단 ✅'],['한국 데이터','가입률 42% 수준','정확도 40% 미만','99%+ (본인 등록) ✅'],['규제 리스크','개인정보 소송 다수','GDPR 벌금 다수','완전 준수 ✅'],['가격','월 $60+ (프리미엄)','월 $200~500','무료~29,000원 ✅']].map((r,i)=>(
 <tr key={i}>{r.map((c,j)=><td key={j} style={{padding:'12px 16px',fontSize:13,fontWeight:j===0?700:j===3?600:400,color:j===3?'var(--em-d)':j===0?'var(--text)':'var(--text2)',background:j===3?'var(--em-x)':'transparent',borderBottom:'1px solid var(--bg2)'}}>{c}</td>)}</tr>))}
 </tbody>
 </table>
