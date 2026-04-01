@@ -245,15 +245,6 @@ return(
 </div>
 </section>
 
-{/* Stats */}
-<section style={{padding:'28px 0',background:'var(--navy)',color:'#fff'}}>
-<div className="ctn" style={{display:'flex',flexWrap:'wrap',justifyContent:'center',gap:32,textAlign:'center'}}>
-{[{n:'$650억+',l:'TAM 시장규모'},{n:'CAGR 25%',l:'시장 성장률'},{n:'0개',l:'동의기반 경쟁사'},{n:'3클릭',l:'핵심 플로우'},{n:'97%',l:'콜드콜 실패율→대안'}].map((s,i)=>(
-<div key={i} style={{minWidth:100}}><div style={{fontSize:'clamp(18px,3vw,26px)',fontWeight:800,background:'linear-gradient(135deg,var(--em),#60A5FA)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>{s.n}</div><div style={{fontSize:11,opacity:.6,marginTop:2}}>{s.l}</div></div>
-))}
-</div>
-</section>
-
 {/* Problem */}
 <section style={{padding:'72px 0'}}>
 <div className="ctn">
@@ -288,14 +279,14 @@ return(
 {/* Competitor Comparison */}
 <section style={{padding:'72px 0'}}>
 <div className="ctn">
-<div style={{textAlign:'center',marginBottom:40}}><span className="badge b-bl" style={{marginBottom:10}}>VS COMPETITORS</span><h2 style={{fontSize:'clamp(22px,4vw,34px)',fontWeight:800}}>기존 서비스와 근본적으로 다릅니다</h2></div>
+<div style={{textAlign:'center',marginBottom:40}}><span className="badge b-bl" style={{marginBottom:10}}>VS COMPETITORS</span><h2 style={{fontSize:'clamp(22px,4vw,34px)',fontWeight:800}}>LinkedIn과 근본적으로 다릅니다</h2></div>
 <div style={{overflowX:'auto'}}>
 <table style={{width:'100%',minWidth:600,borderCollapse:'separate',borderSpacing:0,background:'var(--card)',borderRadius:'var(--r)',boxShadow:'var(--sh)',overflow:'hidden'}}>
 <thead><tr style={{background:'var(--navy)',color:'#fff'}}>
-{['비교 항목','기존 SNS 플랫폼','기존 연락처 DB','BizConnect'].map((h,i)=><th key={i} style={{padding:'14px 16px',textAlign:'left',fontSize:13,fontWeight:700}}>{i===3?<span style={{color:'var(--em)'}}>✨ {h}</span>:h}</th>)}
+{['비교 항목','LinkedIn','ZoomInfo','BizConnect'].map((h,i)=><th key={i} style={{padding:'14px 16px',textAlign:'left',fontSize:13,fontWeight:700}}>{i===3?<span style={{color:'var(--em)'}}>✨ {h}</span>:h}</th>)}
 </tr></thead>
 <tbody>
-{[['본질','SNS (자기 PR 중심)','동의 없이 데이터 크롤링','동의 기반 디렉토리 ✅'],['전화번호','대부분 비공개','일방적 열람 (동의 없음)','동의 시에만 상호 공개 ✅'],['스팸 차단','메시지 스팸 범람','구조적 차단 불가','구조적 차단 ✅'],['한국 데이터','가입률 42% 수준','정확도 40% 미만','99%+ (본인 등록) ✅'],['규제 리스크','개인정보 소송 다수','GDPR 벌금 다수','완전 준수 ✅'],['가격','월 $60+ (프리미엄)','월 $200~500','무료~29,000원 ✅']].map((r,i)=>(
+{[['본질','SNS (자기 PR)','데이터 크롤링 DB','동의 기반 디렉토리 ✅'],['전화번호','비공개','동의없이 열람','동의 시에만 상호 공개 ✅'],['스팸 차단','InMail 범람','차단 불가','구조적 차단 ✅'],['한국 정확도','42%','40%','99%+ (본인 등록) ✅'],['규제 리스크','소송 중','GDPR 벌금','완전 준수 ✅'],['가격','$60+/월','$200+/월','무료~29,000원 ✅']].map((r,i)=>(
 <tr key={i}>{r.map((c,j)=><td key={j} style={{padding:'12px 16px',fontSize:13,fontWeight:j===0?700:j===3?600:400,color:j===3?'var(--em-d)':j===0?'var(--text)':'var(--text2)',background:j===3?'var(--em-x)':'transparent',borderBottom:'1px solid var(--bg2)'}}>{c}</td>)}</tr>))}
 </tbody>
 </table>
