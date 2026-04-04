@@ -54,6 +54,27 @@ input,select,textarea{font-family:var(--f);border:none;outline:none}
 .btn-sm{padding:8px 16px;font-size:13px}.btn-lg{padding:16px 32px;font-size:17px;border-radius:var(--r)}
 .btn-xl{padding:18px 40px;font-size:18px;border-radius:var(--r);font-weight:700}
 .btn-w{width:100%}.btn:disabled{opacity:.45;cursor:not-allowed;transform:none!important}
+.btn:active{transform:scale(.97);opacity:.85}
+
+/* Focus indicators (1-3) */
+:focus-visible{outline:2px solid var(--em);outline-offset:2px;border-radius:4px}
+
+/* Skeleton loading (1-5) */
+.skeleton{background:linear-gradient(90deg,var(--bg2) 25%,var(--bg3) 50%,var(--bg2) 75%);background-size:200% 100%;animation:shimmer 1.5s ease infinite;border-radius:var(--rs)}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+
+/* Progress bar (2-7) */
+.progress-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--em),var(--blue));border-radius:3px;transition:width .5s ease}
+
+/* Status colors (2-4) */
+.status-pending{color:var(--orange);background:var(--orange-l)}
+.status-accepted{color:var(--em-d);background:var(--em-l)}
+.status-rejected{color:var(--gray);background:var(--gray-l)}
+
+/* Filter chips (2-2) */
+.filter-chip{display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;background:var(--em-l);color:var(--em-d);border:1px solid var(--em)}
+.filter-chip .chip-x{width:16px;height:16px;border-radius:8px;background:var(--em-d);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:10px;cursor:pointer}
 
 .inp{padding:13px 16px;border:1.5px solid var(--bg3);border-radius:var(--rs);font-size:15px;background:var(--card);transition:all .2s;width:100%}
 .inp:focus{border-color:var(--em);box-shadow:0 0 0 3px rgba(16,185,129,.1)}.inp::placeholder{color:var(--text3)}
@@ -100,16 +121,16 @@ const COMPANIES=[
 {id:'c10',name:'SK하이닉스',industry:'반도체',logo:'💎',verified:true,depts:['R&D','구매팀','생산기술','품질']},
 ];
 const USERS=[
-{id:'u1',name:'김영호',co:'삼성전자',cid:'c1',dept:'구매팀',pos:'과장',bio:'반도체 소재 구매 담당. 신규 공급업체 환영합니다.',phone:'***-****-****',verified:true,plan:'FREE',rate:78,avatar:'👨‍💼'},
-{id:'u2',name:'박수진',co:'네이버',cid:'c2',dept:'AI Lab',pos:'팀장',bio:'NLP/LLM 연구 리드. 산학 협력 관심.',phone:'***-****-****',verified:true,plan:'PRO',rate:62,avatar:'👩‍💻'},
-{id:'u3',name:'이준혁',co:'현대자동차',cid:'c4',dept:'전기차사업부',pos:'마케팅팀장',bio:'EV 마케팅 전략 총괄',phone:'***-****-****',verified:true,plan:'PRO',rate:55,avatar:'👨‍💼'},
-{id:'u4',name:'최민서',co:'토스',cid:'c7',dept:'사업개발팀',pos:'매니저',bio:'핀테크 파트너십 & 제휴. B2B 협업 환영',phone:'***-****-****',verified:true,plan:'FREE',rate:83,avatar:'👩‍💼'},
-{id:'u5',name:'정현우',co:'카카오',cid:'c3',dept:'커머스사업부',pos:'PM',bio:'라이브커머스 프로덕트 매니저',phone:'***-****-****',verified:true,plan:'FREE',rate:45,avatar:'👨‍💻'},
-{id:'u6',name:'한지영',co:'쿠팡',cid:'c6',dept:'물류기술팀',pos:'시니어엔지니어',bio:'풀필먼트 자동화 기술 개발',phone:'***-****-****',verified:true,plan:'PRO',rate:70,avatar:'👩‍🔧'},
-{id:'u7',name:'오승민',co:'LG전자',cid:'c5',dept:'영업팀',pos:'부장',bio:'B2B 가전/디스플레이 솔루션 영업',phone:'***-****-****',verified:true,plan:'ENT',rate:91,avatar:'👨‍💼'},
-{id:'u8',name:'임서연',co:'당근마켓',cid:'c8',dept:'그로스팀',pos:'리드',bio:'사용자 성장 전략 실험 설계',phone:'***-****-****',verified:true,plan:'FREE',rate:58,avatar:'👩‍💼'},
-{id:'u9',name:'강태호',co:'배달의민족',cid:'c9',dept:'상점개발팀',pos:'팀장',bio:'프랜차이즈 파트너 확보 관리',phone:'***-****-****',verified:true,plan:'PRO',rate:76,avatar:'👨‍🍳'},
-{id:'u10',name:'윤하린',co:'SK하이닉스',cid:'c10',dept:'R&D',pos:'연구원',bio:'차세대 메모리 반도체 연구',phone:'***-****-****',verified:true,plan:'FREE',rate:42,avatar:'🧑‍🔬'},
+{id:'u1',name:'김영호',co:'삼성전자',cid:'c1',dept:'구매팀',pos:'과장',bio:'반도체 소재 구매 담당. 신규 공급업체 환영합니다.',phone:'***-****-****',verified:true,plan:'FREE',rate:78,avatar:'👨‍💼',joined:'2025.03',respRate:85,lastAct:'3일 전'},
+{id:'u2',name:'박수진',co:'네이버',cid:'c2',dept:'AI Lab',pos:'팀장',bio:'NLP/LLM 연구 리드. 산학 협력 관심.',phone:'***-****-****',verified:true,plan:'PRO',rate:62,avatar:'👩‍💻',joined:'2025.11',respRate:90,lastAct:'오늘'},
+{id:'u3',name:'이준혁',co:'현대자동차',cid:'c4',dept:'전기차사업부',pos:'마케팅팀장',bio:'EV 마케팅 전략 총괄',phone:'***-****-****',verified:true,plan:'PRO',rate:55,avatar:'👨‍💼',joined:'2026.02',respRate:72,lastAct:'2일 전'},
+{id:'u4',name:'최민서',co:'토스',cid:'c7',dept:'사업개발팀',pos:'매니저',bio:'핀테크 파트너십 & 제휴. B2B 협업 환영',phone:'***-****-****',verified:true,plan:'FREE',rate:83,avatar:'👩‍💼',joined:'2026.03',respRate:95,lastAct:'오늘'},
+{id:'u5',name:'정현우',co:'카카오',cid:'c3',dept:'커머스사업부',pos:'PM',bio:'라이브커머스 프로덕트 매니저',phone:'***-****-****',verified:true,plan:'FREE',rate:45,avatar:'👨‍💻',joined:'2025.12',respRate:60,lastAct:'5일 전'},
+{id:'u6',name:'한지영',co:'쿠팡',cid:'c6',dept:'물류기술팀',pos:'시니어엔지니어',bio:'풀필먼트 자동화 기술 개발',phone:'***-****-****',verified:true,plan:'PRO',rate:70,avatar:'👩‍🔧',joined:'2026.01',respRate:88,lastAct:'1일 전'},
+{id:'u7',name:'오승민',co:'LG전자',cid:'c5',dept:'영업팀',pos:'부장',bio:'B2B 가전/디스플레이 솔루션 영업',phone:'***-****-****',verified:true,plan:'ENT',rate:91,avatar:'👨‍💼',joined:'2025.10',respRate:96,lastAct:'오늘'},
+{id:'u8',name:'임서연',co:'당근마켓',cid:'c8',dept:'그로스팀',pos:'리드',bio:'사용자 성장 전략 실험 설계',phone:'***-****-****',verified:true,plan:'FREE',rate:58,avatar:'👩‍💼',joined:'2026.02',respRate:78,lastAct:'4일 전'},
+{id:'u9',name:'강태호',co:'배달의민족',cid:'c9',dept:'상점개발팀',pos:'팀장',bio:'프랜차이즈 파트너 확보 관리',phone:'***-****-****',verified:true,plan:'PRO',rate:76,avatar:'👨‍🍳',joined:'2025.09',respRate:82,lastAct:'1일 전'},
+{id:'u10',name:'윤하린',co:'SK하이닉스',cid:'c10',dept:'R&D',pos:'연구원',bio:'차세대 메모리 반도체 연구',phone:'***-****-****',verified:true,plan:'FREE',rate:42,avatar:'🧑‍🔬',joined:'2026.01',respRate:55,lastAct:'1주 전'},
 ];
 const PURPOSES=[
 {key:'SALES',label:'영업/세일즈',icon:'💼',color:'var(--orange)',bg:'var(--orange-l)',bc:'b-or'},
@@ -152,8 +173,8 @@ const[recv,setRecv]=useState([
 {id:'r3',rn:'강태호',rc:'배달의민족',rd:'상점개발팀',rp:'팀장',ra:'👨‍🍳',pur:'SALES',msg:'프랜차이즈 솔루션 소개 드리고 싶습니다',st:'PENDING',at:'2026-03-28T11:00:00',rate:76},
 ]);
 const[contacts,setContacts]=useState([
-{id:'ct1',uid:'u7',name:'오승민',co:'LG전자',dept:'영업팀',pos:'부장',phone:'010-3456-7890',avatar:'👨‍💼',date:'2026-03-25',memo:'디스플레이 솔루션 미팅 예정',fav:true},
-{id:'ct2',uid:'u12',name:'조예진',co:'CJ제일제당',dept:'마케팅팀',pos:'대리',phone:'010-9876-5432',avatar:'👩‍💼',date:'2026-03-20',memo:'',fav:false},
+{id:'ct1',uid:'u7',name:'오승민',co:'LG전자',dept:'영업팀',pos:'부장',phone:'010-3456-7890',avatar:'👨‍💼',date:'2026-03-25',memo:'디스플레이 솔루션 미팅 예정',fav:true,tags:['거래처','디스플레이']},
+{id:'ct2',uid:'u12',name:'조예진',co:'CJ제일제당',dept:'마케팅팀',pos:'대리',phone:'010-9876-5432',avatar:'👩‍💼',date:'2026-03-20',memo:'',fav:false,tags:['잠재고객']},
 ]);
 const[selUser,setSelUser]=useState(null);
 const[modal,setModal]=useState(null); // 'req' | 'intro' | null
@@ -173,10 +194,10 @@ return(
 {pg==='landing'&&<LandingPage/>}
 {pg==='login'&&<LoginPage/>}
 {pg==='signup'&&<SignupPage/>}
-{user&&['home','inbox','insights','contacts','profile','settings','pricing','user-detail','orgchart'].includes(pg)&&<AppShell/>}
+{user&&['home','inbox','insights','contacts','profile','settings','pricing','user-detail','orgchart','sent-requests'].includes(pg)&&<AppShell/>}
 {modal==='req'&&selUser&&<RequestModal/>}
 {modal==='intro'&&selUser&&<IntroModal/>}
-{toast&&<div className="toast">{toast}</div>}
+{toast&&<div className="toast" role="alert" aria-live="assertive">{toast}</div>}
 </AppCtx.Provider>);
 }
 
@@ -347,7 +368,7 @@ return(
 <div className="ctn">
 <div style={{textAlign:'center',marginBottom:40}}><span className="badge b-em" style={{marginBottom:10}}>PRICING</span><h2 style={{fontSize:'clamp(22px,4vw,34px)',fontWeight:800}}>부담 없이 시작하세요</h2><p style={{color:'var(--text2)',marginTop:6}}>모든 플랜 7일 무료 체험 · 언제든 해지</p></div>
 <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(250px,1fr))',gap:16,maxWidth:860,margin:'0 auto'}}>
-{[{p:'Free',pr:'무료',pd:'',ft:['월 5건 연락 요청','기본 검색','프로필 등록','수신 무제한'],main:false},{p:'Pro',pr:'29,000원',pd:'/월',ft:['무제한 연락 요청','고급 필터','👀 프로필 조회자 공개','📊 구매 인텐트 시그널','🌐 소개 경로 찾기'],main:true,pop:true},{p:'Enterprise',pr:'99,000원',pd:'/팀·월',ft:['팀 관리 대시보드','API 액세스','CRM 연동','팀 통계/우선 CS'],main:false}].map((p,i)=>(
+{[{p:'Free',pr:'무료',pd:'',ft:['월 5건 연락 요청','기본 검색','프로필 등록','수신 무제한'],main:false},{p:'Pro',pr:'29,000원',pd:'/월',ft:['월 50건 연락 요청','고급 필터 (직급·업종·지역)','👀 프로필 조회자 공개','📊 구매 인텐트 시그널','🌐 소개 경로 찾기'],main:true,pop:true},{p:'Enterprise',pr:'99,000원',pd:'/팀·월',ft:['무제한 요청','팀 관리 대시보드','API/CRM 연동','전담 매니저'],main:false}].map((p,i)=>(
 <div key={i} className="card" style={{padding:26,border:p.main?'2px solid var(--em)':'2px solid transparent',position:'relative'}}>
 {p.pop&&<div style={{position:'absolute',top:-11,left:'50%',transform:'translateX(-50%)',background:'var(--em)',color:'#fff',padding:'3px 14px',borderRadius:20,fontSize:11,fontWeight:700}}>가장 인기</div>}
 <div style={{fontSize:13,color:'var(--text2)',fontWeight:600,marginBottom:6}}>{p.p}</div>
@@ -449,18 +470,20 @@ return(<div style={{paddingBottom:68,minHeight:'100vh',background:'var(--bg)'}}>
 {pg==='user-detail'&&<UserDetail/>}
 {pg==='orgchart'&&<OrgChartPage/>}
 {pg==='inbox'&&<InboxPage/>}
+{pg==='sent-requests'&&<SentRequestsPage/>}
 {pg==='insights'&&<InsightsPage/>}
 {pg==='contacts'&&<ContactsPage/>}
 {pg==='profile'&&<ProfilePage/>}
 {pg==='settings'&&<SettingsPage/>}
 {pg==='pricing'&&<PricingPage/>}
 </div>
-<div className="bnav">{navItems.map(n=>(
-<div key={n.key} className={`bnav-i ${pg===n.key?'on':''}`} onClick={()=>setPg(n.key)}>
-<span className="ni">{n.icon}</span><span>{n.label}</span>
-{n.badge>0&&<span className="bnav-bd">{n.badge}</span>}
-{n.isNew&&<span className="bnav-new">NEW</span>}
-</div>))}</div>
+<nav className="bnav" role="navigation" aria-label="앱 네비게이션">{navItems.map(n=>(
+<div key={n.key} className={`bnav-i ${pg===n.key?'on':''}`} onClick={()=>setPg(n.key)} role="button" tabIndex={0}
+  aria-label={`${n.label}${n.badge>0?` (${n.badge}건)`:''}`} aria-current={pg===n.key?'page':undefined}>
+<span className="ni" aria-hidden="true">{n.icon}</span><span>{n.label}</span>
+{n.badge>0&&<span className="bnav-bd" aria-hidden="true">{n.badge}</span>}
+{n.isNew&&<span className="bnav-new" aria-hidden="true">NEW</span>}
+</div>))}</nav>
 </div>);
 }
 
@@ -513,6 +536,21 @@ return(<div style={{paddingTop:16}}>
 </div>
 
 {!searched?(<>
+{/* "찾고 있어요" 신호 (2-5 킬러 기능) */}
+<div style={{marginBottom:16}}>
+<h3 style={{fontSize:13,fontWeight:700,color:'var(--text2)',marginBottom:8}}>🛒 "찾고 있어요" 신호 — 수락률 거의 100%</h3>
+{[{user:'김영호',av:'👨‍💼',co:'삼성전자',dept:'구매팀',cat:'반도체 소재',desc:'웨이퍼 세정용 화학소재 공급업체를 찾습니다',exp:'D-23'},
+{user:'이준혁',av:'👨‍💼',co:'현대자동차',dept:'구매팀',cat:'배터리 소재',desc:'NCM 양극재 납품 가능한 업체 찾습니다',exp:'D-15'}].map((s,i)=>(
+<div key={i} className="card" style={{padding:14,marginBottom:8,borderLeft:'3px solid var(--blue)'}}>
+<div style={{display:'flex',alignItems:'center',gap:8,marginBottom:6}}>
+<span style={{fontSize:16}}>{s.av}</span>
+<div style={{flex:1}}><div style={{fontWeight:700,fontSize:13}}>{s.co} {s.dept}</div><div style={{fontSize:10,color:'var(--text3)'}}>{s.user} · {s.cat}</div></div>
+<span style={{fontSize:10,color:'var(--orange)',fontWeight:600}}>{s.exp}</span>
+</div>
+<p style={{fontSize:12,color:'var(--text2)',lineHeight:1.5}}>"{s.desc}"</p>
+<button className="btn btn-p btn-sm btn-w" style={{marginTop:8,fontSize:12}} onClick={()=>{const m=USERS.find(u=>u.co===s.co);if(m)goUser(m)}}>연락하기 → 수락률 거의 100%</button>
+</div>))}
+</div>
 <div style={{marginBottom:20}}>
 <h3 style={{fontSize:13,fontWeight:700,color:'var(--text2)',marginBottom:10}}>⚡ 빠른 검색</h3>
 <div style={{display:'flex',flexWrap:'wrap',gap:6}}>
@@ -522,22 +560,39 @@ return(<div style={{paddingTop:16}}>
 <div><h3 style={{fontSize:13,fontWeight:700,color:'var(--text2)',marginBottom:10}}>✨ 추천 프로필</h3>
 {USERS.slice(0,5).map((u,i)=><UserCard key={u.id} user={u} onClick={()=>goUser(u)} delay={i*60}/>)}</div>
 </>):(<>
-<div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:14}}>
+{/* 검색 결과 + 정렬 옵션 (2-2) */}
+<div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:10}}>
 <h3 style={{fontSize:14,fontWeight:700}}>검색 결과 <span style={{color:'var(--em)'}}>{res.length}명</span></h3>
-<button className="btn btn-g btn-sm" onClick={()=>{setSearched(false);setQ('')}}>✕ 초기화</button>
+<div style={{display:'flex',gap:4,alignItems:'center'}}>
+<select style={{fontSize:11,padding:'4px 8px',borderRadius:6,border:'1px solid var(--bg3)',background:'var(--card)',color:'var(--text2)'}} onChange={e=>{const s=e.target.value;let sorted=[...res];if(s==='rate')sorted.sort((a,b)=>b.rate-a.rate);else if(s==='recent')sorted.sort((a,b)=>(b.joined||'').localeCompare(a.joined||''));setRes(sorted)}}>
+<option value="relevance">관련도순</option><option value="rate">수락률 높은순</option><option value="recent">최근 가입순</option>
+</select>
+<button className="btn btn-g btn-sm" onClick={()=>{setSearched(false);setQ('')}} style={{fontSize:11,padding:'3px 8px'}}>✕</button>
 </div>
+</div>
+{/* 필터 칩 (2-2) */}
+{q&&<div style={{marginBottom:10}}><div className="filter-chip">🔍 {q} <span className="chip-x" onClick={()=>{setSearched(false);setQ('')}}>✕</span></div></div>}
 {res.length?res.map((u,i)=><UserCard key={u.id} user={u} onClick={()=>goUser(u)} delay={i*50}/>):
-<div style={{textAlign:'center',padding:40,color:'var(--text3)'}}><div style={{fontSize:40}}>🔍</div><p style={{fontWeight:600,color:'var(--text2)',marginTop:6}}>결과가 없어요</p></div>}
+<div style={{textAlign:'center',padding:40,color:'var(--text3)'}}><div style={{fontSize:40}}>🔍</div><p style={{fontWeight:600,color:'var(--text2)',marginTop:6}}>검색 결과가 없어요</p><p style={{fontSize:12,marginTop:4}}>다른 키워드로 검색하거나 필터를 조정해보세요</p><div style={{display:'flex',gap:6,justifyContent:'center',marginTop:12}}>{['구매팀','영업팀','사업개발'].map((k,i)=><button key={i} className="btn btn-o btn-sm" onClick={()=>{setQ(k);doSearch(k)}}>{k}</button>)}</div></div>}
 </>)}
 </div>);
 }
 
 function UserCard({user:u,onClick,delay=0}){return(
-<div className="card au" onClick={onClick} style={{padding:14,marginBottom:8,cursor:'pointer',animationDelay:`${delay}ms`,display:'flex',alignItems:'center',gap:12}}>
+<div className="card au" onClick={onClick} role="button" tabIndex={0} aria-label={`${u.name}, ${u.co} ${u.dept} ${u.pos}`}
+  style={{padding:14,marginBottom:8,cursor:'pointer',animationDelay:`${delay}ms`,display:'flex',alignItems:'center',gap:12}}>
 <div style={{width:44,height:44,borderRadius:22,background:'var(--em-l)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:22,flexShrink:0}}>{u.avatar}</div>
-<div style={{flex:1,minWidth:0}}><div style={{display:'flex',alignItems:'center',gap:5}}><span style={{fontWeight:700,fontSize:14}}>{u.name}</span><span style={{fontSize:11,color:'var(--text3)'}}>{u.pos}</span>{u.verified&&<span style={{fontSize:10}}>✅</span>}</div>
-<div style={{fontSize:12,color:'var(--text2)',marginTop:1}}>{u.co} · {u.dept}</div></div>
-<div style={{textAlign:'right',flexShrink:0}}><div style={{fontSize:10,color:'var(--text3)'}}>📞 {u.phone}</div><div style={{fontSize:10,color:'var(--em)',fontWeight:700}}>수락률 {u.rate}%</div></div>
+<div style={{flex:1,minWidth:0}}>
+{/* 3줄 핵심정보 (2-2): ①이름+직급 ②회사+부서 ③한줄소개 */}
+<div style={{display:'flex',alignItems:'center',gap:5}}><span style={{fontWeight:700,fontSize:14}}>{u.name}</span><span style={{fontSize:11,color:'var(--text3)'}}>{u.pos}</span>{u.verified&&<span style={{fontSize:10}} title="인증됨">✅</span>}</div>
+<div style={{fontSize:12,color:'var(--text2)',marginTop:1}}>{u.co} · {u.dept}</div>
+{u.bio&&<div style={{fontSize:11,color:'var(--text3)',marginTop:2,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{u.bio}</div>}
+</div>
+<div style={{textAlign:'right',flexShrink:0}}>
+<div style={{fontSize:10,color:'var(--text3)'}}>📞 ***-••••-****</div>
+<div style={{fontSize:10,color:'var(--em)',fontWeight:700}}>수락률 {u.rate}%</div>
+{u.lastAct&&<div style={{fontSize:9,color:u.lastAct==='오늘'?'var(--em)':'var(--text3)',marginTop:1}}>🟢 {u.lastAct}</div>}
+</div>
 </div>);
 }
 
@@ -553,9 +608,16 @@ return(<div className="asr" style={{paddingTop:14}}>
 <h2 style={{fontSize:20,fontWeight:800}}>{u.name} {u.verified&&'✅'}</h2>
 <p style={{fontSize:13,color:'var(--text2)',marginTop:3}}>{u.pos} · {u.dept}</p>
 <p style={{fontSize:14,fontWeight:600,color:'var(--em)'}}>{u.co}</p>
-<div style={{display:'flex',justifyContent:'center',gap:20,margin:'14px 0',padding:'14px 0',borderTop:'1px solid var(--bg2)',borderBottom:'1px solid var(--bg2)'}}>
+<div style={{display:'flex',justifyContent:'center',gap:12,margin:'14px 0',padding:'14px 0',borderTop:'1px solid var(--bg2)',borderBottom:'1px solid var(--bg2)',flexWrap:'wrap'}}>
 <div><div style={{fontWeight:800,fontSize:17,color:'var(--em)'}}>{u.rate}%</div><div style={{fontSize:10,color:'var(--text3)'}}>수락률</div></div>
-<div><div style={{fontWeight:800,fontSize:16}}>📞</div><div style={{fontSize:10,color:'var(--text3)'}}>{u.phone}</div></div>
+<div><div style={{fontWeight:800,fontSize:14}}>{u.respRate||80}%</div><div style={{fontSize:10,color:'var(--text3)'}}>응답률</div></div>
+<div><div style={{fontWeight:700,fontSize:12,color:'var(--text2)'}}>{u.lastAct||'최근'}</div><div style={{fontSize:10,color:'var(--text3)'}}>최근활동</div></div>
+<div><div style={{fontWeight:700,fontSize:12,color:'var(--text2)'}}>{u.joined||'2025'}</div><div style={{fontSize:10,color:'var(--text3)'}}>가입일</div></div>
+</div>
+{/* 공통점 표시 (2-3) */}
+<div style={{display:'flex',gap:6,justifyContent:'center',flexWrap:'wrap',marginBottom:12}}>
+<span className="badge b-bl" style={{fontSize:10}}>🔗 같은 IT 업종</span>
+<span className="badge b-pu" style={{fontSize:10}}>🤝 공통 연결 1명</span>
 </div>
 {u.bio&&<p style={{fontSize:13,color:'var(--text2)',lineHeight:1.6,marginBottom:14}}>{u.bio}</p>}
 <button className="btn btn-p btn-w btn-lg" onClick={()=>setModal('req')}>🤝 연락처 요청하기</button>
@@ -574,7 +636,7 @@ return(<div className="asr" style={{paddingTop:14}}>
 {i<introPath.length-1&&<div style={{padding:'0 4px',color:'var(--text3)',fontSize:12}}>→</div>}
 </React.Fragment>))}
 </div>
-<div style={{fontSize:10,color:'var(--text3)',marginTop:6}}>💡 오승민님을 통해 소개받으면 수락률이 약 2~5배 높아집니다</div>
+<div style={{fontSize:10,color:'var(--text3)',marginTop:6}}>💡 이 경로를 통한 평균 소개 성공률: <strong style={{color:'var(--em)'}}>72%</strong> (직접 요청 대비 2~5배 높음)</div>
 </div>
 
 {/* 🏢 Org Chart Link */}
@@ -687,24 +749,33 @@ return(<div style={{paddingTop:16}}>
 // ══════ Request Modal (PRESERVED) ══════
 function RequestModal(){
 const{selUser:u,handleSendRequest,setModal}=useApp();
-const[pur,setPur]=useState('');const[msg,setMsg]=useState('');
-return(<div className="modal-ov" onClick={()=>setModal(null)}><div className="modal-ct" onClick={e=>e.stopPropagation()} style={{padding:26}}>
-<div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:18}}><h3 style={{fontSize:17,fontWeight:800}}>🤝 연락처 요청</h3><button onClick={()=>setModal(null)} style={{fontSize:18,color:'var(--text3)'}}>✕</button></div>
+const[pur,setPur]=useState('');const[msg,setMsg]=useState('');const[sending,setSending]=useState(false);
+// 기본 메시지 템플릿 (2-3)
+const templates={SALES:'안녕하세요, 스타트업허브 사업개발팀의 나현준입니다. 제품 소개 관련하여 연락드립니다.',PURCHASE:'안녕하세요, 스타트업허브입니다. 귀사 제품/서비스에 관심이 있어 문의드립니다.',COLLAB:'안녕하세요, 파트너십 관련 논의를 요청드립니다.',INVEST:'안녕하세요, 투자 관련하여 연락드립니다.',RECRUIT:'안녕하세요, 채용 관련 좋은 기회가 있어 연락드립니다.'};
+const selectPurpose=(k)=>{setPur(k);if(!msg)setMsg(templates[k]||'')};
+const send=()=>{if(!pur)return;setSending(true);setTimeout(()=>{handleSendRequest(u,pur,msg);setSending(false)},500)};
+return(<div className="modal-ov" onClick={()=>setModal(null)} role="dialog" aria-modal="true" aria-label="연락처 요청"><div className="modal-ct" onClick={e=>e.stopPropagation()} style={{padding:26}}>
+<div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:18}}><h3 style={{fontSize:17,fontWeight:800}}>🤝 연락처 요청</h3><button onClick={()=>setModal(null)} aria-label="닫기" style={{fontSize:18,color:'var(--text3)',minWidth:40,minHeight:40,display:'flex',alignItems:'center',justifyContent:'center'}}>✕</button></div>
 <div style={{background:'var(--bg2)',borderRadius:'var(--rs)',padding:12,marginBottom:16,display:'flex',alignItems:'center',gap:10}}>
 <div style={{width:36,height:36,borderRadius:18,background:'var(--em-l)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:18}}>{u.avatar}</div>
 <div><div style={{fontWeight:700,fontSize:14}}>{u.name} · {u.pos}</div><div style={{fontSize:12,color:'var(--text2)'}}>{u.co} · {u.dept}</div></div>
 </div>
-<div style={{marginBottom:14}}><span className="il">연락 목적 *</span><div style={{display:'flex',flexWrap:'wrap',gap:6,marginTop:6}}>
-{PURPOSES.map(p=><button key={p.key} onClick={()=>setPur(p.key)} style={{padding:'7px 14px',borderRadius:18,fontSize:12,fontWeight:600,border:'2px solid',cursor:'pointer',borderColor:pur===p.key?p.color:'var(--bg3)',background:pur===p.key?p.bg:'var(--card)',color:pur===p.key?p.color:'var(--text2)'}}>{p.icon} {p.label}</button>)}
+<div style={{marginBottom:14}}><span className="il">연락 목적 선택 *</span><div style={{display:'flex',flexWrap:'wrap',gap:6,marginTop:6}}>
+{PURPOSES.map(p=><button key={p.key} onClick={()=>selectPurpose(p.key)} aria-pressed={pur===p.key}
+  style={{padding:'7px 14px',borderRadius:18,fontSize:12,fontWeight:600,border:'2px solid',cursor:'pointer',transition:'all .15s',minHeight:36,
+  borderColor:pur===p.key?p.color:'var(--bg3)',background:pur===p.key?p.bg:'var(--card)',color:pur===p.key?p.color:'var(--text2)'}}>{p.icon} {p.label}</button>)}
 </div></div>
-<div style={{marginBottom:16}}><span className="il">한줄 메시지 (선택)</span><textarea className="inp" value={msg} onChange={e=>setMsg(e.target.value)} placeholder="간단한 소개나 요청 사유" rows={2} maxLength={100} style={{resize:'none',marginTop:6}}/></div>
+<div style={{marginBottom:16}}><div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}><span className="il">메시지 (기본 템플릿 제공)</span>{pur&&<button className="btn btn-g" onClick={()=>setMsg(templates[pur]||'')} style={{fontSize:10,padding:'2px 8px'}}>📝 템플릿</button>}</div>
+<textarea className="inp" value={msg} onChange={e=>setMsg(e.target.value)} placeholder="간단한 소개나 요청 사유" rows={3} maxLength={200} style={{resize:'none',marginTop:6}} aria-label="요청 메시지"/>
+<span style={{fontSize:10,color:'var(--text3)',float:'right'}}>{msg.length}/200</span></div>
 {pur&&<div className="asr" style={{background:'var(--bg2)',borderRadius:'var(--rs)',padding:12,marginBottom:16}}>
 <div style={{fontSize:11,fontWeight:700,color:'var(--text2)',marginBottom:4}}>📱 상대방에게 이렇게 보입니다</div>
 <div style={{background:'var(--card)',borderRadius:6,padding:10,fontSize:12}}>
-<strong>나현준</strong> (스타트업허브)님이 <span style={{color:gp(pur).color,fontWeight:700}}>{gp(pur).label}</span> 목적으로 연락처 요청
-{msg&&<div style={{marginTop:4,color:'var(--text2)',fontStyle:'italic'}}>"{msg}"</div>}
+<strong>나현준</strong> (스타트업허브 사업개발팀)님이 <span style={{color:gp(pur).color,fontWeight:700}}>{gp(pur).label}</span> 목적으로 연락처 요청
+{msg&&<div style={{marginTop:4,color:'var(--text2)',fontStyle:'italic',borderTop:'1px solid var(--bg2)',paddingTop:4}}>"{msg.slice(0,80)}{msg.length>80?'...':''}"</div>}
 </div></div>}
-<div style={{display:'flex',gap:8}}><button className="btn btn-o" style={{flex:1}} onClick={()=>setModal(null)}>취소</button><button className="btn btn-p" style={{flex:2}} onClick={()=>handleSendRequest(u,pur,msg)} disabled={!pur}>요청 보내기 →</button></div>
+<div style={{display:'flex',gap:8}}><button className="btn btn-o" style={{flex:1}} onClick={()=>setModal(null)}>취소</button><button className="btn btn-p" style={{flex:2}} onClick={send} disabled={!pur||sending} aria-busy={sending}>{sending?'전송 중...':'요청 보내기 →'}</button></div>
+<p style={{fontSize:11,color:'var(--text3)',textAlign:'center',marginTop:10}}>⚡ 오늘 남은 요청: 47/50건 (Pro)</p>
 </div></div>);
 }
 
@@ -730,14 +801,25 @@ return(<div className="modal-ov" onClick={()=>setModal(null)}><div className="mo
 
 // ══════ Inbox (PRESERVED) ══════
 function InboxPage(){
-const{recv,handleAccept,handleReject}=useApp();const[tab,setTab]=useState('PENDING');
+const{recv,handleAccept,handleReject,setPg}=useApp();const[tab,setTab]=useState('PENDING');
 const fl=recv.filter(r=>tab==='ALL'||r.st===tab);
-return(<div style={{paddingTop:16}}>
-<h2 style={{fontSize:18,fontWeight:800,marginBottom:14}}>📨 수신함</h2>
-<div className="tab-bar" style={{marginBottom:16}}>{[{k:'PENDING',l:'미응답'},{k:'ACCEPTED',l:'수락'},{k:'REJECTED',l:'거부'},{k:'ALL',l:'전체'}].map(t=><div key={t.k} className={`tab-i ${tab===t.k?'on':''}`} onClick={()=>setTab(t.k)}>{t.l}</div>)}</div>
-{fl.length===0?<div style={{textAlign:'center',padding:40,color:'var(--text3)'}}><div style={{fontSize:40}}>📭</div><p style={{fontWeight:600,color:'var(--text2)',marginTop:6}}>받은 요청이 없어요</p></div>:
-fl.map((r,i)=>{const p=gp(r.pur);return(
-<div key={r.id} className="card au" style={{padding:16,marginBottom:8,animationDelay:`${i*50}ms`}}>
+return(<section style={{paddingTop:16}} aria-label="수신함">
+<div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:14}}>
+<h2 style={{fontSize:18,fontWeight:800}}>📨 수신함</h2>
+<button className="btn btn-g btn-sm" onClick={()=>setPg('sent-requests')} style={{fontSize:12}}>📤 보낸 요청</button>
+</div>
+<div className="tab-bar" style={{marginBottom:16}} role="tablist">{[{k:'PENDING',l:'미응답'},{k:'ACCEPTED',l:'수락'},{k:'REJECTED',l:'거부'},{k:'ALL',l:'전체'}].map(t=><div key={t.k} className={`tab-i ${tab===t.k?'on':''}`} onClick={()=>setTab(t.k)} role="tab" aria-selected={tab===t.k}>{t.l}</div>)}</div>
+{fl.length===0?
+<div style={{textAlign:'center',padding:40,color:'var(--text3)'}} role="status" aria-live="polite">
+<div style={{fontSize:40}}>📭</div><p style={{fontWeight:600,color:'var(--text2)',marginTop:6}}>받은 요청이 없어요</p>
+<p style={{fontSize:12,marginTop:4}}>프로필을 완성하면 요청을 받기 쉬워져요!</p>
+<button className="btn btn-p btn-sm" style={{marginTop:12}} onClick={()=>setPg('profile')}>프로필 완성하기</button>
+</div>:
+fl.map((r,i)=>{const p=gp(r.pur);
+// 상태별 색상 (2-4): 대기=노란, 수락=초록, 거절=회색
+const stColor=r.st==='PENDING'?'var(--orange)':r.st==='ACCEPTED'?'var(--em)':'var(--gray)';
+return(
+<article key={r.id} className="card au" style={{padding:16,marginBottom:8,animationDelay:`${i*50}ms`,borderLeft:`3px solid ${stColor}`}}>
 <div style={{display:'flex',alignItems:'flex-start',gap:12}}>
 <div style={{width:40,height:40,borderRadius:20,background:p.bg,display:'flex',alignItems:'center',justifyContent:'center',fontSize:20,flexShrink:0}}>{r.ra}</div>
 <div style={{flex:1}}>
@@ -746,31 +828,85 @@ fl.map((r,i)=>{const p=gp(r.pur);return(
 {r.msg&&<div style={{fontSize:12,color:'var(--text)',marginTop:6,padding:'6px 8px',background:'var(--bg2)',borderRadius:6,fontStyle:'italic'}}>"{r.msg}"</div>}
 <div style={{fontSize:10,color:'var(--text3)',marginTop:4}}>수락률 {r.rate}% · {new Date(r.at).toLocaleDateString('ko')}</div>
 </div></div>
-{r.st==='PENDING'&&<div style={{display:'flex',gap:8,marginTop:12}}><button className="btn btn-o btn-sm" style={{flex:1,color:'var(--red)',borderColor:'var(--red-l)'}} onClick={()=>handleReject(r.id)}>거부</button><button className="btn btn-p btn-sm" style={{flex:2}} onClick={()=>handleAccept(r.id)}>✅ 수락 (연락처 교환)</button></div>}
-{r.st==='ACCEPTED'&&<div style={{marginTop:10,padding:'8px 12px',background:'var(--em-l)',borderRadius:8,fontSize:12,color:'var(--em-d)',fontWeight:600}}>🎉 연결 완료! 주소록에서 확인하세요</div>}
-{r.st==='REJECTED'&&<div style={{marginTop:10,padding:'8px 12px',background:'var(--bg2)',borderRadius:8,fontSize:12,color:'var(--text3)'}}>거절됨</div>}
-</div>);})}
-</div>);
+{r.st==='PENDING'&&<div style={{display:'flex',gap:8,marginTop:12}}>
+<button className="btn btn-o btn-sm" style={{flex:1,color:'var(--red)',borderColor:'var(--red-l)'}} onClick={()=>handleReject(r.id)} aria-label={`${r.rn}님 요청 거부`}>거부</button>
+<button className="btn btn-p btn-sm" style={{flex:2}} onClick={()=>handleAccept(r.id)} aria-label={`${r.rn}님 요청 수락`}>✅ 수락 (연락처 교환)</button>
+</div>}
+{r.st==='ACCEPTED'&&<div className="status-accepted" style={{marginTop:10,padding:'8px 12px',borderRadius:8,fontSize:12,fontWeight:600}} role="status">🎉 연결 완료! 주소록에서 확인하세요</div>}
+{r.st==='REJECTED'&&<div className="status-rejected" style={{marginTop:10,padding:'8px 12px',borderRadius:8,fontSize:12}}>거절됨</div>}
+</article>);})}
+</section>);
 }
 
-// ══════ Contacts (PRESERVED) ══════
+// ══════ Sent Requests (보낸 요청) ══════
+function SentRequestsPage(){
+const{sent,setPg}=useApp();
+return(<section style={{paddingTop:16}} aria-label="보낸 요청">
+<div style={{display:'flex',alignItems:'center',gap:8,marginBottom:14}}>
+<button className="btn btn-g btn-sm" onClick={()=>setPg('inbox')} aria-label="뒤로가기">← 뒤로</button>
+<h2 style={{fontSize:18,fontWeight:800}}>📤 보낸 요청</h2>
+</div>
+{sent.length===0?
+<div style={{textAlign:'center',padding:40,color:'var(--text3)'}} role="status">
+<div style={{fontSize:40}}>📮</div><p style={{fontWeight:600,color:'var(--text2)',marginTop:6}}>보낸 요청이 없어요</p>
+<p style={{fontSize:12,marginTop:4}}>검색에서 원하는 담당자를 찾아 연락처를 요청해보세요!</p>
+<button className="btn btn-p btn-sm" style={{marginTop:12}} onClick={()=>setPg('home')}>담당자 검색하기</button>
+</div>:
+sent.map((r,i)=>{const p=gp(r.pur);return(
+<article key={r.id} className="card au" style={{padding:14,marginBottom:8,animationDelay:`${i*50}ms`,borderLeft:'3px solid var(--orange)',display:'flex',alignItems:'center',gap:12}}>
+<div style={{width:40,height:40,borderRadius:20,background:p.bg,display:'flex',alignItems:'center',justifyContent:'center',fontSize:20}}>{r.ta}</div>
+<div style={{flex:1}}><div style={{fontWeight:700,fontSize:13}}>{r.tn} <span className={`badge ${p.bc}`} style={{fontSize:10}}>{p.label}</span></div><div style={{fontSize:11,color:'var(--text2)'}}>{r.tc} · {r.td}</div><div style={{fontSize:10,color:'var(--text3)',marginTop:2}}>{new Date(r.at).toLocaleDateString('ko')}</div></div>
+<span className="badge status-pending" style={{fontSize:10}}>⏳ 대기</span>
+</article>);})}
+</section>);
+}
+
+// ══════ Contacts (2-4 태그, 메모, CSV) ══════
 function ContactsPage(){
-const{contacts,setContacts}=useApp();const[q,setQ]=useState('');
+const{contacts,setContacts,setPg}=useApp();const[q,setQ]=useState('');const[editMemo,setEditMemo]=useState(null);
 const fl=contacts.filter(c=>!q||c.name.includes(q)||c.co.includes(q));
+// CSV 내보내기 (2-4)
+const exportCSV=()=>{
+  const h='이름,회사,부서,직책,전화번호,연결일,메모\n';
+  const r=contacts.map(c=>`${c.name},${c.co},${c.dept},${c.pos},${c.phone},${c.date},"${c.memo||''}"`).join('\n');
+  const blob=new Blob(['\uFEFF'+h+r],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='bizconnect_contacts.csv';document.body.appendChild(a);a.click();document.body.removeChild(a);
+};
 return(<div style={{paddingTop:16}}>
-<h2 style={{fontSize:18,fontWeight:800,marginBottom:14}}>📖 주소록 <span style={{color:'var(--em)',fontSize:14}}>{contacts.length}명</span></h2>
-<input className="inp" value={q} onChange={e=>setQ(e.target.value)} placeholder="이름, 회사로 검색" style={{marginBottom:14,boxShadow:'var(--sh)'}}/>
-{fl.length===0?<div style={{textAlign:'center',padding:40,color:'var(--text3)'}}><div style={{fontSize:40}}>📖</div><p style={{fontWeight:600,color:'var(--text2)',marginTop:6}}>연결된 연락처가 없어요</p></div>:
+<div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:14}}>
+<h2 style={{fontSize:18,fontWeight:800}}>📖 주소록 <span style={{color:'var(--em)',fontSize:14}}>{contacts.length}명</span></h2>
+<button className="btn btn-g btn-sm" onClick={exportCSV} aria-label="CSV 내보내기" style={{fontSize:11}}>📤 내보내기</button>
+</div>
+<input className="inp" value={q} onChange={e=>setQ(e.target.value)} placeholder="이름, 회사로 검색" aria-label="연락처 검색" style={{marginBottom:14,boxShadow:'var(--sh)'}}/>
+{fl.length===0?<div style={{textAlign:'center',padding:40,color:'var(--text3)'}}><div style={{fontSize:40}}>📖</div><p style={{fontWeight:600,color:'var(--text2)',marginTop:6}}>연결된 연락처가 없어요</p><p style={{fontSize:12,marginTop:4}}>검색에서 담당자를 찾아 첫 연결을 만들어보세요!</p><button className="btn btn-p btn-sm" style={{marginTop:12}} onClick={()=>setPg('home')}>담당자 검색하기</button></div>:
 fl.map((c,i)=>(
 <div key={c.id} className="card au" style={{padding:14,marginBottom:8,animationDelay:`${i*50}ms`}}>
 <div style={{display:'flex',alignItems:'center',gap:12}}>
 <div style={{width:44,height:44,borderRadius:22,background:'var(--em-l)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:22}}>{c.avatar}</div>
-<div style={{flex:1}}><div style={{fontWeight:700,fontSize:14}}>{c.name} <span style={{fontSize:11,color:'var(--text3)',fontWeight:400}}>{c.pos}</span></div><div style={{fontSize:12,color:'var(--text2)'}}>{c.co} · {c.dept}</div><div style={{fontSize:13,color:'var(--em)',fontWeight:600,marginTop:2}}>📞 {c.phone}</div></div>
+<div style={{flex:1}}>
+<div style={{fontWeight:700,fontSize:14}}>{c.name} <span style={{fontSize:11,color:'var(--text3)',fontWeight:400}}>{c.pos}</span></div>
+<div style={{fontSize:12,color:'var(--text2)'}}>{c.co} · {c.dept}</div>
+<div style={{fontSize:13,color:'var(--em)',fontWeight:600,marginTop:2}}>📞 {c.phone}</div>
+</div>
 <div style={{display:'flex',flexDirection:'column',alignItems:'center',gap:4}}>
-<button onClick={()=>setContacts(p=>p.map(x=>x.id===c.id?{...x,fav:!x.fav}:x))} style={{fontSize:18}}>{c.fav?'⭐':'☆'}</button>
+<button onClick={()=>setContacts(p=>p.map(x=>x.id===c.id?{...x,fav:!x.fav}:x))} style={{fontSize:18,minWidth:36,minHeight:36}} aria-label={c.fav?'즐겨찾기 해제':'즐겨찾기'}>{c.fav?'⭐':'☆'}</button>
 <a href={`tel:${c.phone}`} className="btn btn-p btn-sm" style={{padding:'5px 10px',fontSize:11}}>전화</a>
 </div></div>
-{c.memo&&<div style={{marginTop:8,padding:'5px 8px',background:'var(--bg2)',borderRadius:6,fontSize:11,color:'var(--text2)'}}>📝 {c.memo}</div>}
+{/* 태그 (2-4) */}
+{c.tags&&c.tags.length>0&&<div style={{display:'flex',gap:4,marginTop:6,flexWrap:'wrap'}}>{c.tags.map((t,j)=><span key={j} className="badge b-bl" style={{fontSize:10}}>🏷️ {t}</span>)}</div>}
+{/* 메모 — 클릭하여 편집 (2-4) */}
+{editMemo===c.id?(
+<div style={{marginTop:6}}><textarea className="inp" defaultValue={c.memo} rows={2} style={{resize:'none',fontSize:12}} autoFocus
+  onBlur={e=>{setContacts(p=>p.map(x=>x.id===c.id?{...x,memo:e.target.value}:x));setEditMemo(null)}}
+  onKeyDown={e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();setContacts(p=>p.map(x=>x.id===c.id?{...x,memo:e.target.value}:x));setEditMemo(null)}}}
+  aria-label="메모 편집"/></div>
+):(
+<div style={{marginTop:6,padding:'5px 8px',background:'var(--bg2)',borderRadius:6,fontSize:11,color:c.memo?'var(--text2)':'var(--text3)',cursor:'pointer',minHeight:28,display:'flex',alignItems:'center'}}
+  onClick={()=>setEditMemo(c.id)} role="button" tabIndex={0} aria-label="메모 편집">
+{c.memo?`📝 ${c.memo}`:'📝 메모를 추가하세요...'}
+</div>
+)}
+<div style={{fontSize:10,color:'var(--text3)',marginTop:4}}>연결일: {c.date}</div>
 </div>))}
 </div>);
 }
@@ -786,12 +922,21 @@ return(<div style={{paddingTop:16}}>
 <p style={{fontSize:14,fontWeight:600,color:'var(--em)'}}>{user.co}</p>
 <span className="badge b-em" style={{marginTop:6}}>{user.plan} 플랜</span>
 </div>
+{/* 프로필 완성도 (2-7) */}
+<div style={{background:'var(--card)',borderRadius:'var(--r)',padding:14,boxShadow:'var(--sh)',marginBottom:12}}>
+<div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:6}}>
+<span style={{fontSize:12,fontWeight:650,color:'var(--text2)'}}>프로필 완성도</span>
+<span style={{fontSize:12,fontWeight:800,color:'var(--orange)'}}>75%</span>
+</div>
+<div className="progress-bar"><div className="progress-fill" style={{width:'75%'}}/></div>
+<p style={{fontSize:11,color:'var(--text3)',marginTop:6}}>💡 한줄 소개를 추가하면 100%! 검색 노출이 3배 증가합니다.</p>
+</div>
 <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:8,marginBottom:14}}>
 {[{l:'보낸 요청',v:'12건'},{l:'수락률',v:'67%'},{l:'연결 연락처',v:'8명'},{l:'프로필 조회',v:'8회/주'}].map((s,i)=>(
 <div key={i} className="card" style={{padding:14,textAlign:'center'}}><div style={{fontSize:18,fontWeight:800,color:'var(--em)'}}>{s.v}</div><div style={{fontSize:11,color:'var(--text3)',marginTop:2}}>{s.l}</div></div>))}
 </div>
 <div className="card" style={{marginBottom:14}}>
-{[{i:'💡',l:'인사이트',a:()=>setPg('insights')},{i:'⚙️',l:'설정',a:()=>setPg('settings')},{i:'💎',l:'구독 관리',a:()=>setPg('pricing')},{i:'📤',l:'보낸 요청 확인'},{i:'📊',l:'활동 리포트'}].map((m,i)=>(
+{[{i:'💡',l:'인사이트',a:()=>setPg('insights')},{i:'📤',l:'보낸 요청',a:()=>setPg('sent-requests')},{i:'⚙️',l:'설정',a:()=>setPg('settings')},{i:'💎',l:'구독 관리',a:()=>setPg('pricing')},{i:'📊',l:'활동 리포트'}].map((m,i)=>(
 <div key={i} onClick={m.a} style={{padding:'13px 18px',display:'flex',alignItems:'center',gap:10,borderBottom:i<4?'1px solid var(--bg2)':'none',cursor:'pointer'}}
 onMouseEnter={e=>e.currentTarget.style.background='var(--bg2)'} onMouseLeave={e=>e.currentTarget.style.background='transparent'}>
 <span style={{fontSize:16}}>{m.i}</span><span style={{fontSize:14,fontWeight:500,flex:1}}>{m.l}</span><span style={{color:'var(--text3)',fontSize:12}}>→</span>
@@ -804,30 +949,48 @@ onMouseEnter={e=>e.currentTarget.style.background='var(--bg2)'} onMouseLeave={e=
 // ══════ Settings (PRESERVED) ══════
 function SettingsPage(){
 const{setPg}=useApp();const[st,setSt]=useState({s:true,sa:true,pu:true,co:true,iv:true,rc:true,pr:true,rr:true,rm:true,wk:true,dn:false});const tg=k=>setSt(p=>({...p,[k]:!p[k]}));
-const Toggle=({on,fn})=><div onClick={fn} style={{width:42,height:22,borderRadius:11,background:on?'var(--em)':'var(--bg3)',cursor:'pointer',position:'relative',transition:'all .2s',flexShrink:0}}><div style={{width:18,height:18,borderRadius:9,background:'#fff',position:'absolute',top:2,left:on?22:2,transition:'left .2s',boxShadow:'0 1px 2px rgba(0,0,0,.15)'}}/></div>;
-return(<div style={{paddingTop:16}}>
-<button className="btn btn-g btn-sm" onClick={()=>setPg('profile')} style={{marginBottom:14}}>← 뒤로</button>
+// Toggle with accessibility (1-3)
+const Toggle=({on,fn,label})=><div onClick={fn} role="switch" aria-checked={on} aria-label={label} tabIndex={0} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fn()}}}
+  style={{width:42,height:22,borderRadius:11,background:on?'var(--em)':'var(--bg3)',cursor:'pointer',position:'relative',transition:'background .2s',flexShrink:0}}>
+  <div style={{width:18,height:18,borderRadius:9,background:'#fff',position:'absolute',top:2,left:on?22:2,transition:'left .2s',boxShadow:'0 1px 2px rgba(0,0,0,.15)'}}/></div>;
+return(<section style={{paddingTop:16}} aria-label="설정">
+<button className="btn btn-g btn-sm" onClick={()=>setPg('profile')} aria-label="뒤로가기" style={{marginBottom:14}}>← 뒤로</button>
 <h2 style={{fontSize:18,fontWeight:800,marginBottom:16}}>⚙️ 설정</h2>
 <div className="card" style={{marginBottom:14}}>
-<div style={{padding:'12px 18px',borderBottom:'1px solid var(--bg2)'}}><h4 style={{fontSize:13,fontWeight:700}}>🔒 프라이버시</h4></div>
-<div style={{padding:'10px 18px',display:'flex',justifyContent:'space-between',alignItems:'center'}}><div><div style={{fontSize:13,fontWeight:500}}>검색 노출</div><div style={{fontSize:11,color:'var(--text3)'}}>다른 사용자가 나를 검색 가능</div></div><Toggle on={st.s} fn={()=>tg('s')}/></div>
+<div style={{padding:'12px 18px',borderBottom:'1px solid var(--bg2)'}}><h3 style={{fontSize:13,fontWeight:700}}>🔒 프라이버시</h3></div>
+<div style={{padding:'10px 18px',display:'flex',justifyContent:'space-between',alignItems:'center'}}><div><div style={{fontSize:13,fontWeight:500}}>검색 노출</div><div style={{fontSize:11,color:'var(--text3)'}}>다른 사용자가 나를 검색 가능</div></div><Toggle on={st.s} fn={()=>tg('s')} label="검색 노출"/></div>
 <div style={{padding:'6px 18px 14px'}}><div style={{fontSize:12,fontWeight:600,color:'var(--text2)',marginBottom:6}}>수신 가능 목적</div>
-{[{k:'sa',l:'영업'},{k:'pu',l:'구매'},{k:'co',l:'협업'},{k:'iv',l:'투자'},{k:'rc',l:'채용'}].map(x=><div key={x.k} style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'6px 0'}}><span style={{fontSize:12}}>{x.l}</span><Toggle on={st[x.k]} fn={()=>tg(x.k)}/></div>)}
+{[{k:'sa',l:'영업'},{k:'pu',l:'구매'},{k:'co',l:'협업'},{k:'iv',l:'투자'},{k:'rc',l:'채용'}].map(x=><div key={x.k} style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'6px 0'}}><span style={{fontSize:12}}>{x.l} 수신</span><Toggle on={st[x.k]} fn={()=>tg(x.k)} label={`${x.l} 수신`}/></div>)}
 </div></div>
 <div className="card">
-<div style={{padding:'12px 18px',borderBottom:'1px solid var(--bg2)'}}><h4 style={{fontSize:13,fontWeight:700}}>🔔 알림</h4></div>
-{[{k:'pr',l:'연락 요청 수신'},{k:'rr',l:'요청 결과'},{k:'rm',l:'미응답 리마인더'},{k:'wk',l:'주간 요약'},{k:'dn',l:'방해금지 (22~08시)'}].map(x=><div key={x.k} style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'10px 18px'}}><span style={{fontSize:13}}>{x.l}</span><Toggle on={st[x.k]} fn={()=>tg(x.k)}/></div>)}
+<div style={{padding:'12px 18px',borderBottom:'1px solid var(--bg2)'}}><h3 style={{fontSize:13,fontWeight:700}}>🔔 알림 (2-8)</h3></div>
+{[{k:'pr',l:'연락 요청 수신',pri:'높음'},{k:'rr',l:'요청 결과',pri:'높음'},{k:'rm',l:'미응답 리마인더',pri:'보통'},{k:'wk',l:'주간 요약',pri:'보통'},{k:'dn',l:'방해금지 (22~08시)',pri:''}].map(x=>(
+<div key={x.k} style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'10px 18px'}}>
+<div style={{display:'flex',alignItems:'center',gap:6}}>
+<span style={{fontSize:13}}>{x.l}</span>
+{x.pri&&<span style={{fontSize:9,color:x.pri==='높음'?'var(--red)':'var(--text3)'}}>{x.pri}</span>}
 </div>
-</div>);
+<Toggle on={st[x.k]} fn={()=>tg(x.k)} label={x.l}/></div>))}
+</div>
+</section>);
 }
 
 // ══════ Pricing (PRESERVED + updated features) ══════
 function PricingPage(){
 const{setPg,showToast}=useApp();
 return(<div style={{paddingTop:16}}>
-<button className="btn btn-g btn-sm" onClick={()=>setPg('profile')} style={{marginBottom:14}}>← 뒤로</button>
+<button className="btn btn-g btn-sm" onClick={()=>setPg('profile')} aria-label="뒤로가기" style={{marginBottom:14}}>← 뒤로</button>
 <h2 style={{fontSize:18,fontWeight:800,marginBottom:16}}>💎 구독 관리</h2>
-{[{p:'Free',pr:'무료',cur:false,ft:['월 5건','기본 검색']},{p:'Pro',pr:'29,000원/월',cur:true,ft:['무제한','고급필터','👀 조회자 공개','📊 인텐트','🌐 소개경로']},{p:'Enterprise',pr:'99,000원/팀·월',cur:false,ft:['팀관리','API','CRM']}].map((p,i)=>(
+{/* 전환 트리거 (2-9) */}
+<div style={{background:'linear-gradient(135deg,var(--orange-l),var(--em-l))',borderRadius:'var(--r)',padding:16,marginBottom:14,textAlign:'center'}} role="alert">
+<div style={{fontSize:14,fontWeight:700,color:'var(--navy)',marginBottom:4}}>이번 달 무료 요청 5건 중 3건 사용</div>
+<div style={{fontSize:12,color:'var(--text2)'}}>Pro로 업그레이드하면 월 50건까지 요청 가능!</div>
+</div>
+{[
+  {p:'Free',pr:'무료',cur:false,ft:['월 5건 연락 요청','기본 검색','프로필 등록']},
+  {p:'Pro',pr:'29,000원/월',cur:true,ft:['월 50건 연락 요청','고급 필터 (직급·업종·지역)','👀 조회자 공개','📊 구매 인텐트 시그널','🌐 소개 경로 찾기']},
+  {p:'Enterprise',pr:'99,000원/팀·월',cur:false,ft:['무제한 요청','팀 관리 대시보드','API/CRM 연동','전담 매니저']}
+].map((p,i)=>(
 <div key={i} className="card" style={{padding:18,marginBottom:8,border:p.cur?'2px solid var(--em)':'2px solid transparent'}}>
 <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
 <div><div style={{fontWeight:700,fontSize:15}}>{p.p} {p.cur&&<span className="badge b-em">현재</span>}</div><div style={{fontSize:13,color:'var(--text2)',marginTop:2}}>{p.pr}</div></div>
